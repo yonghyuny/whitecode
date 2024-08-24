@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Image from 'next/image';
-import NavLinks from './nav-links';
-import Link from 'next/link';
+import SidebarMenuLists from '../components/organism/sidebar/SidebarMenuLists';
+import { sizes } from '@/styles/sizes';
+import { colors } from '@/styles/colors';
 
-const drawerWidth = 240;
+import LogoLink from '../components/molecules/sidebar/LogoLink';
 
-export default function SideNav() {
+const drawerWidth = sizes.width.sideBar;
+
+const SideNav = () => {
   return (
     <Drawer
       sx={{
@@ -17,23 +17,20 @@ export default function SideNav() {
         '& .MuiDrawer-paper': {
           width: drawerWidth,
           boxSizing: 'border-box',
-          bgcolor: '#3F4D67',
-          color: '#9FB3D0',
-          height: '100vh',
+          bgcolor: colors.background.drawer,
+          color: colors.text.drawer,
+          height: sizes.height.sideBar,
           overflowX: 'hidden',
         },
       }}
       variant="permanent"
       anchor="left"
     >
-      <Toolbar sx={{ paddingY: '20px' }}>
-        <Link href={'/'}>
-          <Image src={'/logo.png'} width={200} height={40} alt="LOGO"></Image>
-        </Link>
-      </Toolbar>
-      <List>
-        <NavLinks />
-      </List>
+      <LogoLink />
+
+      <SidebarMenuLists />
+      {/* <NavLinks /> */}
     </Drawer>
   );
-}
+};
+export default SideNav;
